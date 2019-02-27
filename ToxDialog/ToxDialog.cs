@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace ToxDialog
 {
@@ -215,88 +216,88 @@ namespace ToxDialog
         /// <returns>One of the TDialogResult values.</returns>
         public ToxDialogResult Show()
         {
-            return ShowInternal(owner);
+            return ShowInternal(Owner);
         }
 
         private ToxDialogResult ShowInternal(IWin32Window owner)
         {
             using (ToxDialogForm form = new ToxDialogForm())
             {
-                _form = form;
-                form.LinkClicked += LinkClicked;
+                this.form = form;
+                form.LinkClicked += RaiseLinkClicked;
                 form.Load += Load;
                 form.RightToLeft = RightToLeft;
                 form.RightToLeftLayout = RightToLeftLayout;
-                SetStartPosition(_form, owner);
+                SetStartPosition(this.form, owner);
                 form.ShowDialog(owner);
-                _xPosition = _form.Location.X;
-                _yPosition = _form.Location.Y;
-                _form = null;
+                XPosition = this.form.Location.X;
+                YPosition = this.form.Location.Y;
+                this.form = null;
                 form.Activate();
-                result = (form.Tag as TDialogButton).TDialogResult;
-                return result;
+                Result = (form.Tag as ToxDialogButton).TDialogResult;
+                return Result;
             }
         }
 
-        private void LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void RaiseLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            RaiseEvent LinkClicked(sender, e);
+            LinkClicked?.Invoke(sender, e);
         }
 
         private void Load(object sender, EventArgs e)
         {
-            _form.SuspendLayouts();
-            _form.Content = Content;
-            if (_contentLink != null && _contentLink != _form.LabelContent)
+            form.SuspendLayouts();
+            form.Content = Content;
+            if (contentLink != null && contentLink != form.LabelContent)
             {
                 foreach (LinkLabel.Link link in ContentLinks)
                 {
-                    _form.LabelContent.Links.Add(link);
+                    form.LabelContent.Links.Add(link);
                 }
-                _contentLink.Dispose();
-                _contentLink = _form.LabelContent;
+                contentLink.Dispose();
+                contentLink = form.LabelContent;
             }
-            _form.Caption = WindowTitle;
-            _form.Title = MainInstruction;
-            _form.ToxButtons = Buttons;
-            _form.MainIcon = MainIcon;
+            form.Caption = WindowTitle;
+            form.Title = MainInstruction;
+            form.ToxButtons = Buttons;
+            form.MainIcon = MainIcon;
             if (CustomMainIcon != null)
             {
-                _form.Image = CustomMainIcon;
+                form.Image = CustomMainIcon;
             }
-            _form.DefaultButton = DefaultButton;
-            if (_expanded != null && _expanded != _form.LabelExpandedContent)
+            form.DefaultButton = DefaultButton;
+            if (expanded != null && expanded != form.LabelExpandedContent)
             {
-                _expanded.Dispose();
-                _expanded = _form.LabelExpandedContent;
+                expanded.Dispose();
+                expanded = form.LabelExpandedContent;
             }
-            _form.Expanded = ExpandedByDefault;
-            _form.CustomControl = CustomControl;
+            form.Expanded = ExpandedByDefault;
+            form.CustomControl = CustomControl;
             if (Sound != null)
             {
-                _form.Sound = Sound;
+                form.Sound = Sound;
             }
-            _form.ResumeLayouts();
-            _form.xPosition = xPosition;
-            _form.yPosition = yPosition;
+            form.ResumeLayouts();
+            form.xPosition = XPosition;
+            form.yPosition = YPosition;
         }
 
-        private ToxDialogForm _form;
+        private ToxDialogForm form;
 
-        public void Close(TDialogResult result)
+        public void Close(ToxDialogResult result)
         {
-            if (_form != null)
+            if (form != null)
             {
                 throw new InvalidOperationException("Cannot invoke this method before the dialog is shown, or after it is closed.");
             }
             ToxDialogButton button = new ToxDialogButton(result);
-            _form.Tag = button;
+            form.Tag = button;
             if (button.ToxDialogResult != ToxDialogResult.None)
             {
-                _form.DialogResult = DialogResult.OK;
+                form.DialogResult = DialogResult.OK;
             }
-            int xPosition = _form.Location.X;
-            int yPosition = _form.Location.Y;
+            int xPosition = form.Location.X;
+            int yPosition = form.Location.Y;
         }
 
         #endregion Methods
@@ -306,7 +307,7 @@ namespace ToxDialog
         /// <summary>
         /// Gets or sets a sound played when the Vista-like task dialog is shown.
         /// </summary>
-        public isound Sound { get; set; }
+        public ISound Sound { get; set; }
 
         /// <summary>
         /// Gets or sets an implementation of IWin32Window that will own the modal task dialog.
@@ -323,11 +324,11 @@ namespace ToxDialog
         /// <summary>
         /// The collection of links contained within the Content LinkLabel.
         /// </summary>
-        public readonly LinkLabel.LinkCollection ContentLinks {
+        public LinkLabel.LinkCollection ContentLinks {
             get {
                 if (contentLink == null)
                 {
-                    if (_form != null)
+                    if (form != null)
                     {
                         contentLink = form.LabelContent;
                     }
@@ -340,6 +341,114 @@ namespace ToxDialog
             }
         }
 
+        /// <summary>
+        /// Gets or sets the text to display in the title bar of the Vista-like task dialog.
+        /// </summary>
+        public string WindowTitle { get; set; }
+
+        /// <summary>
+        /// Gets or sets the text to be used for the main instruction of the Vista-like task dialog.
+        /// </summary>
+        public string MainInstruction { get; set; }
+
+        /// <summary>
+        /// Gets or sets the array of the TDialogButtons that specifies which buttons to display in the Vista-like task dialog.
+        /// </summary>
+        public ToxDialogButton ToxButtons { get; set; }
+
+        /// <summary>
+        /// Gets or sets the one of the TDialogIcon values that specifies which icon on what background to display in the Vista-like task dialog.
+        /// </summary>
+        public ToxDialogIcon MainIcon { get; set; }
+
+        /// <summary>
+        /// Gets or sets the custom image to display in the Vista-like task dialog.
+        /// </summary>
+        public System.Drawing.Image CustomMainIcon { get; set; }
+
+        /// <summary>
+        /// Gets or sets one of the TDialogDefaultButton values that specifies the default button for the Vista-like task dialog.
+        /// </summary>
+        public ToxDialogDefaultButton DefaultButton { get; set; } = ToxDialogDefaultButton.Button1;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the text appears from right to left, such as when using Hebrew or Arabic fonts.
+        /// </summary>
+        public RightToLeft RightToLeft { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether right-to-left mirror placement is turned on.
+        /// </summary>
+        public bool RightToLeftLayout { get; set; }
+
+        /// <summary>
+        /// Gets or sets the dialog result for the TDialog form.
+        /// </summary>
+        public ToxDialogResult Result { get; set; }
+
+        /// <summary>
+        /// Gets or sets the custom control to display in the Vista-like task dialog.
+        /// </summary>
+        public Control Control { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the verification checkbox in the dialog should be checked when the dialog is initially displayed.
+        /// </summary>
+        public CheckState VerificationFlagChecked { get; set; }
+
+        /// <summary>
+        /// Gets or sets the string to be used to label the verification checkbox. If this parameter is Nothing (null), the verification checkbox is not displayed in the Vista-like task dialog.
+        /// </summary>
+        public string VerificationText { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the string specified by the ExpandedInformation property should be displayed when the Vista-like task dialog is initially displayed.
+        /// </summary>
+        public bool ExpandedByDefault { get; set; }
+
+        /// <summary>
+        /// Gets or sets the string to be used for displaying additional information. The additional information is displayed either immediately below the content or below the footer text depending on whether the ExpandFooterArea property is set.
+        /// </summary>
+        public string ExpandedInformation { get; set; }
+
+        private LinkLabel expanded;
+
+        /// <summary>
+        /// The collection of links contained within the Footer LinkLabel.
+        /// </summary>
+        public LinkLabel.LinkCollection ExpandedInformationLinks {
+            get {
+                if (expanded == null)
+                {
+                    if (form != null)
+                    {
+                        expanded = form.LabelExpandedContent;
+                    }
+                    else
+                    {
+                        expanded = new LinkLabel();
+                    }
+                }
+                return expanded.Links;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating the x position of the form
+        /// </summary>
+        public int XPosition { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating the y position of the form
+        /// </summary>
+        public int YPosition { get; set; }
+
         #endregion Fields and Properties
+
+        #region Events
+
+        public event LinkLabelLinkClickedEventHandler LinkClicked;
+
+        #endregion Events
     }
 }
