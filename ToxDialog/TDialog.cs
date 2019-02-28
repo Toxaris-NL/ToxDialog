@@ -143,27 +143,27 @@ namespace ToxDialog
             switch (buttons)
             {
                 case MessageBoxButtons.AbortRetryIgnore:
-                    newDialog.TButtons = new TDialogButton[] { new TDialogButton(TDialogResult.Abort), new TDialogButton(TDialogResult.Retry), new TDialogButton(TDialogResult.Ignore) };
+                    newDialog.Buttons = new TDialogButton[] { new TDialogButton(TDialogResult.Abort), new TDialogButton(TDialogResult.Retry), new TDialogButton(TDialogResult.Ignore) };
                     break;
 
                 case MessageBoxButtons.OKCancel:
-                    newDialog.TButtons = new TDialogButton[] { new TDialogButton(TDialogResult.OK), new TDialogButton(TDialogResult.Cancel) };
+                    newDialog.Buttons = new TDialogButton[] { new TDialogButton(TDialogResult.OK), new TDialogButton(TDialogResult.Cancel) };
                     break;
 
                 case MessageBoxButtons.RetryCancel:
-                    newDialog.TButtons = new TDialogButton[] { new TDialogButton(TDialogResult.Retry), new TDialogButton(TDialogResult.Cancel) };
+                    newDialog.Buttons = new TDialogButton[] { new TDialogButton(TDialogResult.Retry), new TDialogButton(TDialogResult.Cancel) };
                     break;
 
                 case MessageBoxButtons.YesNo:
-                    newDialog.TButtons = new TDialogButton[] { new TDialogButton(TDialogResult.Yes), new TDialogButton(TDialogResult.No) };
+                    newDialog.Buttons = new TDialogButton[] { new TDialogButton(TDialogResult.Yes), new TDialogButton(TDialogResult.No) };
                     break;
 
                 case MessageBoxButtons.YesNoCancel:
-                    newDialog.TButtons = new TDialogButton[] { new TDialogButton(TDialogResult.Yes), new TDialogButton(TDialogResult.No), new TDialogButton(TDialogResult.Cancel) };
+                    newDialog.Buttons = new TDialogButton[] { new TDialogButton(TDialogResult.Yes), new TDialogButton(TDialogResult.No), new TDialogButton(TDialogResult.Cancel) };
                     break;
 
                 default:
-                    newDialog.TButtons = new TDialogButton[] { new TDialogButton(TDialogResult.OK) };
+                    newDialog.Buttons = new TDialogButton[] { new TDialogButton(TDialogResult.OK) };
                     break;
             }
 
@@ -260,7 +260,7 @@ namespace ToxDialog
             }
             form.Caption = WindowTitle;
             form.Title = MainInstruction;
-            form.ToxButtons = TButtons;
+            form.ToxButtons = Buttons;
             form.MainIcon = MainIcon;
             if (CustomMainIcon != null)
             {
@@ -355,7 +355,7 @@ namespace ToxDialog
         /// <summary>
         /// Gets or sets the array of the TDialogButtons that specifies which buttons to display in the Vista-like task dialog.
         /// </summary>
-        public TDialogButton[] TButtons { get; set; }
+        public TDialogButton[] Buttons { get; set; }
 
         /// <summary>
         /// Gets or sets the one of the TDialogIcon values that specifies which icon on what background to display in the Vista-like task dialog.
