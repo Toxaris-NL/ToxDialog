@@ -1,6 +1,6 @@
 ﻿namespace ToxDialog
 {
-    public enum ToxDialogResult
+    public enum TDialogResult
     {
         /// <summary>
         /// Nothing is returned from the TDialog. This means that the modal dialog continues running.

@@ -5,42 +5,42 @@ namespace ToxDialog
 {
     internal static class Extensions
     {
-        public static string GetButtonName(ToxDialogResult button)
+        public static string GetButtonName(TDialogResult button)
         {
-            ResourceManager loc = new ResourceManager("ToxDialog.Localization", typeof(ToxDialog).Assembly);
+            ResourceManager loc = new ResourceManager("ToxDialog.Localization", typeof(TDialog).Assembly);
             switch (button)
             {
-                case ToxDialogResult.Abort:
+                case TDialogResult.Abort:
                     return loc.GetString("AbortText");
 
-                case ToxDialogResult.Cancel:
+                case TDialogResult.Cancel:
                     return loc.GetString("CancelText");
 
-                case ToxDialogResult.Close:
+                case TDialogResult.Close:
                     return loc.GetString("CloseText");
 
-                case ToxDialogResult.Continue:
+                case TDialogResult.Continue:
                     return loc.GetString("ContinueText");
 
-                case ToxDialogResult.Ignore:
+                case TDialogResult.Ignore:
                     return loc.GetString("IgnoreText");
 
-                case ToxDialogResult.No:
+                case TDialogResult.No:
                     return loc.GetString("NoText");
 
-                case ToxDialogResult.NoToAll:
+                case TDialogResult.NoToAll:
                     return loc.GetString("NoToAllText");
 
-                case ToxDialogResult.OK:
+                case TDialogResult.OK:
                     return loc.GetString("OKText");
 
-                case ToxDialogResult.Retry:
+                case TDialogResult.Retry:
                     return loc.GetString("RetryText");
 
-                case ToxDialogResult.Yes:
+                case TDialogResult.Yes:
                     return loc.GetString("YesText");
 
-                case ToxDialogResult.YesToAll:
+                case TDialogResult.YesToAll:
                     return loc.GetString("YesToAllText");
 
                 default:
@@ -48,33 +48,33 @@ namespace ToxDialog
             }
         }
 
-        public static DialogResult MakeDialogResult(ToxDialogResult result)
+        public static DialogResult MakeDialogResult(TDialogResult result)
         {
             switch (result)
             {
-                case ToxDialogResult.Abort:
+                case TDialogResult.Abort:
                     return DialogResult.Abort;
 
-                case ToxDialogResult.Cancel:
-                case ToxDialogResult.Close:
+                case TDialogResult.Cancel:
+                case TDialogResult.Close:
                     return DialogResult.Cancel;
 
-                case ToxDialogResult.Ignore:
+                case TDialogResult.Ignore:
                     return DialogResult.Ignore;
 
-                case ToxDialogResult.No:
-                case ToxDialogResult.NoToAll:
+                case TDialogResult.No:
+                case TDialogResult.NoToAll:
                     return DialogResult.No;
 
-                case ToxDialogResult.OK:
-                case ToxDialogResult.Continue:
+                case TDialogResult.OK:
+                case TDialogResult.Continue:
                     return DialogResult.OK;
 
-                case ToxDialogResult.Retry:
+                case TDialogResult.Retry:
                     return DialogResult.Retry;
 
-                case ToxDialogResult.Yes:
-                case ToxDialogResult.YesToAll:
+                case TDialogResult.Yes:
+                case TDialogResult.YesToAll:
                     return DialogResult.Yes;
 
                 default:
@@ -82,21 +82,21 @@ namespace ToxDialog
             }
         }
 
-        public static ToxDialogDefaultButton MakeToxDialogDefaultButton(MessageBoxDefaultButton defaultButton)
+        public static TDialogDefaultButton MakeToxDialogDefaultButton(MessageBoxDefaultButton defaultButton)
         {
             switch (defaultButton)
             {
                 case MessageBoxDefaultButton.Button1:
-                    return ToxDialogDefaultButton.Button1;
+                    return TDialogDefaultButton.Button1;
 
                 case MessageBoxDefaultButton.Button2:
-                    return ToxDialogDefaultButton.Button2;
+                    return TDialogDefaultButton.Button2;
 
                 case MessageBoxDefaultButton.Button3:
-                    return ToxDialogDefaultButton.Button3;
+                    return TDialogDefaultButton.Button3;
 
                 default:
-                    return ToxDialogDefaultButton.None;
+                    return TDialogDefaultButton.None;
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace ToxDialog
@@ -6,9 +7,9 @@ namespace ToxDialog
     /// <summary>
     /// The actual form
     /// </summary>
-    public partial class ToxDialogForm : Form
+    public partial class TDialogForm : Form
     {
-        public ToxDialogForm()
+        public TDialogForm()
         {
             InitializeComponent();
 
@@ -58,13 +59,13 @@ namespace ToxDialog
 
         #region Fields & Properties
 
-        private Button _buttons;
+        private Button[] _buttons;
 
-        private Button Buttons {
+        private Button[] Buttons {
             get {
                 if (_buttons == null)
                 {
-                    _buttons = new Button() { Button1, Button2, Button3 }
+                    _buttons = new Button[] { Button1, Button2, Button3 };
                 }
                 return _buttons;
             }
@@ -75,7 +76,7 @@ namespace ToxDialog
         public ISound Sound {
             get {
                 if (_sound != null) { return _sound; }
-                return ToxDialogSound.Default;
+                return TDialogSound.Default;
             }
             set {
                 _sound = value;
@@ -131,15 +132,15 @@ namespace ToxDialog
 
         private bool CanCancel;
 
-        private ToxDialogButton[] toxButtons;
+        private TDialogButton[] toxButtons;
 
-        public ToxDialogButton[] ToxButtons {
+        public TDialogButton[] ToxButtons {
             get {
                 return toxButtons;
             }
             set {
                 if (value == null)
-                    value = new ToxDialogButton[] { };
+                    value = new TDialogButton[] { };
                 toxButtons = value;
                 if (value.Length == 0)
                 {
@@ -162,7 +163,7 @@ namespace ToxDialog
                         // .Enabled = i < value.Length
                         if (i < value.Length)
                         {
-                            if (value[i].TDialogResult == ToxDialogResult.Cancel)
+                            if (value[i].TDialogResult == TDialogResult.Cancel)
                             {
                                 CanCancel = true;
                                 CancelButton = Buttons[i];
@@ -170,7 +171,7 @@ namespace ToxDialog
                             if (value[i].UseCustomText)
                                 withBlock.Text = value[i].Text;
                             else
-                                withBlock.Text = GetButtonName(value[i].ToxDialogResult);
+                                withBlock.Text = Extensions.GetButtonName(value[i].TDialogResult);
                             withBlock.Tag = value[i];
                         }
                     }
@@ -198,40 +199,40 @@ namespace ToxDialog
         }
 
         private bool _drawGradient;
-        private Color _gradienBegin;
+        private Color _gradientBegin;
         private Color _gradientEnd;
 
-        private ToxDialogIcon _mainIcon;
+        private TDialogIcon _mainIcon;
 
-        public ToxDialogIcon MainIcon {
+        public TDialogIcon MainIcon {
             get { return _mainIcon; }
             set {
                 _mainIcon = value;
                 TableLayoutPanelContent.SetRowSpan(LabelIcon, 2);
                 LinkLabel1.ForeColor = SystemColors.HotTrack;
                 _drawGradient = false;
-                Sound = ToxDialogSound.Default;
+                Sound = TDialogSound.Default;
 
                 switch (_mainIcon)
                 {
-                    case ToxDialogIcon.Information:
+                    case TDialogIcon.Information:
                         Image = ToxDialogBigIcon.Information;
-                        Sound = ToxDialogSound.Information;
+                        Sound = TDialogSound.Information;
                         break;
 
-                    case ToxDialogIcon.Question:
+                    case TDialogIcon.Question:
                         Image = ToxDialogBigIcon.Question;
-                        Sound = ToxDialogSound.Question;
+                        Sound = TDialogSound.Question;
                         break;
 
-                    case ToxDialogIcon.Warning:
+                    case TDialogIcon.Warning:
                         Image = ToxDialogBigIcon.Warning;
-                        Sound = ToxDialogSound.Warning;
+                        Sound = TDialogSound.Warning;
                         break;
 
-                    case ToxDialogIcon.Error:
+                    case TDialogIcon.Error:
                         Image = ToxDialogBigIcon.Error;
-                        Sound = ToxDialogSound.Error;
+                        Sound = TDialogSound.Error;
                         break;
 
                     default:
@@ -241,7 +242,7 @@ namespace ToxDialog
             }
         }
 
-        public ToxDialogDefaultButton DefaultButton { get; set; }
+        public TDialogDefaultButton DefaultButton { get; set; }
 
         public string ExpandedInformation {
             get {
@@ -304,10 +305,10 @@ namespace ToxDialog
             if (Tag == null)
             {
                 if ((CancelButton == null) || (!(CancelButton is Button)) || ((CancelButton as Button).Tag == null))
-                { Tag = new ToxDialogButton(ToxDialogResult.Cancel); }
+                { Tag = new TDialogButton(TDialogResult.Cancel); }
                 else
                 {
-                    Tag = (ToxDialogButton)(CancelButton as Button).Tag;
+                    Tag = (TDialogButton)(CancelButton as Button).Tag;
                 }
             }
         }
@@ -339,6 +340,98 @@ namespace ToxDialog
             LabelContent.Margin = new Padding(LabelContent.Margin.Left, (_drawGradient) ? 16 : 8, LabelContent.Margin.Right, ((!LabelExpandedContent.Visible || string.IsNullOrEmpty(LabelExpandedContent.Text)) && CustomControl == null) ? 16 : 8);
         }
 
-        // TODO OnShow
+        protected override void OnShown(EventArgs e)
+        {
+            Tag = null;
+            int i = Convert.ToInt16(DefaultButton);
+            if (i > 0 && i < ToxButtons.Length)
+            {
+                AcceptButton = Buttons[i - 1];
+                Buttons[i - 1].Focus();
+            }
+            else
+            {
+                LabelContent.Focus();
+            }
+
+            if (Sound != null) { Sound.Play(); }
+
+            base.OnShown(e);
+        }
+
+        private void Button_Click(object sender, System.EventArgs e)
+        {
+            Button button = sender as Button;
+            TDialogButton toxButton = button.Tag as TDialogButton;
+            Tag = toxButton;
+            toxButton.RaiseClickEvent(sender, e);
+            if (toxButton.TDialogResult != TDialogResult.None)
+            {
+                DialogResult = DialogResult.OK;
+            }
+        }
+
+        private void TableLayoutPanelContent_CellPaint(System.Object sender, System.Windows.Forms.TableLayoutCellPaintEventArgs e)
+        {
+            if (_drawGradient && e.Row == 0 && e.Column == 1)
+            {
+                Rectangle bounds = new Rectangle(0, 0, TableLayoutPanel.Width, e.CellBounds.Height);
+                using (System.Drawing.Drawing2D.LinearGradientBrush b = new System.Drawing.Drawing2D.LinearGradientBrush(bounds, _gradientBegin, _gradientEnd, System.Drawing.Drawing2D.LinearGradientMode.Horizontal))
+                {
+                    e.Graphics.FillRectangle(b, bounds);
+                }
+            }
+        }
+
+        private void LabelIcon_Paint(System.Object sender, System.Windows.Forms.PaintEventArgs e)
+        {
+            if (_drawGradient)
+            {
+                Rectangle bounds = new Rectangle(0, 0, TableLayoutPanel.Width, LabelIcon.Height);
+                using (System.Drawing.Drawing2D.LinearGradientBrush b = new System.Drawing.Drawing2D.LinearGradientBrush(bounds, _gradientBegin, _gradientEnd, System.Drawing.Drawing2D.LinearGradientMode.Horizontal))
+                {
+                    bounds.X -= LabelIcon.Left;
+                    e.Graphics.FillRectangle(b, bounds);
+                }
+                e.Graphics.DrawImage(LabelIcon.Image, 0, 0);
+            }
+        }
+
+        private void RaiseLinkClicked(System.Object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+        {
+            LinkClicked?.Invoke(sender, e);
+        }
+
+        public event LinkLabelLinkClickedEventHandler LinkClicked;
+
+        private void MakeCenter()
+        {
+            if (!XPosition.Equals(0) && !YPosition.Equals(0))
+            {
+                Location = new Point(XPosition, YPosition);
+            }
+            else
+            {
+                if (Owner == null)
+                {
+                    CenterToScreen();
+                }
+                else
+                {
+                    CenterToParent();
+                }
+            }
+
+            if (MaxWidth > 0)
+            {
+                MaximumSize = new Size(MaxWidth, 800);
+            }
+        }
+
+        private void TDialogForm_LocationChanged(object sender, EventArgs e)
+        {
+            XPosition = Location.X;
+            YPosition = Location.Y;
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace ToxDialog
 {
-    partial class ToxDialogForm
+    partial class TDialogForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,16 +31,16 @@
             this.PanelButtons = new System.Windows.Forms.Panel();
             this.TableLayoutPanelButtons = new System.Windows.Forms.TableLayoutPanel();
             this.FlowLayoutPanelButtons = new System.Windows.Forms.FlowLayoutPanel();
-            this.Button1 = new Button();
-            this.Button2 = new Button();
-            this.Button3 = new Button();
+            this.Button1 = new ToxDialog.Button();
+            this.Button2 = new ToxDialog.Button();
+            this.Button3 = new ToxDialog.Button();
             this.BevelButtons = new System.Windows.Forms.Label();
             this.TableLayoutPanelContent = new System.Windows.Forms.TableLayoutPanel();
             this.LabelIcon = new System.Windows.Forms.Label();
-            this.LinkLabel1 = new Label();
-            this.LabelContent = new Label();
+            this.LinkLabel1 = new ToxDialog.Label();
+            this.LabelContent = new ToxDialog.Label();
             this.TableLayoutPanelContents = new System.Windows.Forms.TableLayoutPanel();
-            this.LabelExpandedContent = new Label();
+            this.LabelExpandedContent = new ToxDialog.Label();
             this.TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.PanelButtons.SuspendLayout();
             this.TableLayoutPanelButtons.SuspendLayout();
@@ -48,37 +48,43 @@
             this.TableLayoutPanelContent.SuspendLayout();
             this.TableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
-
-            this.PanelButtons.Anchor = (System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-| System.Windows.Forms.AnchorStyles.Right);
+            // 
+            // PanelButtons
+            // 
+            this.PanelButtons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.PanelButtons.AutoSize = true;
             this.PanelButtons.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.PanelButtons.Controls.Add(this.TableLayoutPanelButtons);
             this.PanelButtons.Controls.Add(this.BevelButtons);
-            this.PanelButtons.Location = new System.Drawing.Point(0, 117);
+            this.PanelButtons.Location = new System.Drawing.Point(0, 130);
             this.PanelButtons.Margin = new System.Windows.Forms.Padding(0);
             this.PanelButtons.MaximumSize = new System.Drawing.Size(394, 43);
             this.PanelButtons.Name = "PanelButtons";
             this.PanelButtons.Size = new System.Drawing.Size(394, 43);
             this.PanelButtons.TabIndex = 1;
-
-            this.TableLayoutPanelButtons.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right);
+            // 
+            // TableLayoutPanelButtons
+            // 
+            this.TableLayoutPanelButtons.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TableLayoutPanelButtons.AutoSize = true;
             this.TableLayoutPanelButtons.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.TableLayoutPanelButtons.ColumnCount = 2;
             this.TableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.TableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0F));
+            this.TableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.TableLayoutPanelButtons.Controls.Add(this.FlowLayoutPanelButtons, 1, 0);
             this.TableLayoutPanelButtons.Location = new System.Drawing.Point(129, 2);
             this.TableLayoutPanelButtons.Margin = new System.Windows.Forms.Padding(0);
             this.TableLayoutPanelButtons.Name = "TableLayoutPanelButtons";
             this.TableLayoutPanelButtons.RowCount = 1;
             this.TableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41.0F));
+            this.TableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
             this.TableLayoutPanelButtons.Size = new System.Drawing.Size(265, 41);
             this.TableLayoutPanelButtons.TabIndex = 1;
-
-            this.FlowLayoutPanelButtons.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right);
+            // 
+            // FlowLayoutPanelButtons
+            // 
+            this.FlowLayoutPanelButtons.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.FlowLayoutPanelButtons.AutoSize = true;
             this.FlowLayoutPanelButtons.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.FlowLayoutPanelButtons.Controls.Add(this.Button1);
@@ -90,7 +96,9 @@
             this.FlowLayoutPanelButtons.Size = new System.Drawing.Size(249, 33);
             this.FlowLayoutPanelButtons.TabIndex = 0;
             this.FlowLayoutPanelButtons.WrapContents = false;
-
+            // 
+            // Button1
+            // 
             this.Button1.AutoSize = true;
             this.Button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Button1.Location = new System.Drawing.Point(4, 4);
@@ -100,7 +108,10 @@
             this.Button1.TabIndex = 0;
             this.Button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.Button1.Visible = false;
-
+            this.Button1.Click += new System.EventHandler(this.Button_Click);
+            // 
+            // Button2
+            // 
             this.Button2.AutoSize = true;
             this.Button2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Button2.Location = new System.Drawing.Point(87, 4);
@@ -110,7 +121,10 @@
             this.Button2.TabIndex = 1;
             this.Button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.Button2.Visible = false;
-
+            this.Button2.Click += new System.EventHandler(this.Button_Click);
+            // 
+            // Button3
+            // 
             this.Button3.AutoSize = true;
             this.Button3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Button3.Location = new System.Drawing.Point(170, 4);
@@ -120,22 +134,27 @@
             this.Button3.TabIndex = 1;
             this.Button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.Button3.Visible = false;
-
+            this.Button3.Click += new System.EventHandler(this.Button_Click);
+            // 
+            // BevelButtons
+            // 
             this.BevelButtons.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.BevelButtons.Dock = System.Windows.Forms.DockStyle.Top;
             this.BevelButtons.Location = new System.Drawing.Point(0, 0);
             this.BevelButtons.Name = "BevelButtons";
             this.BevelButtons.Size = new System.Drawing.Size(394, 2);
             this.BevelButtons.TabIndex = 0;
-
-            this.TableLayoutPanelContent.Anchor = (System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-| System.Windows.Forms.AnchorStyles.Right);
+            // 
+            // TableLayoutPanelContent
+            // 
+            this.TableLayoutPanelContent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TableLayoutPanelContent.AutoSize = true;
             this.TableLayoutPanelContent.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.TableLayoutPanelContent.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.TableLayoutPanelContent.ColumnCount = 2;
             this.TableLayoutPanelContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.TableLayoutPanelContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0F));
+            this.TableLayoutPanelContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.TableLayoutPanelContent.Controls.Add(this.LabelIcon, 0, 0);
             this.TableLayoutPanelContent.Controls.Add(this.LinkLabel1, 1, 0);
             this.TableLayoutPanelContent.Controls.Add(this.LabelContent, 1, 1);
@@ -150,9 +169,11 @@
             this.TableLayoutPanelContent.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TableLayoutPanelContent.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TableLayoutPanelContent.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TableLayoutPanelContent.Size = new System.Drawing.Size(394, 117);
+            this.TableLayoutPanelContent.Size = new System.Drawing.Size(394, 130);
             this.TableLayoutPanelContent.TabIndex = 0;
-
+            // 
+            // LabelIcon
+            // 
             this.LabelIcon.BackColor = System.Drawing.Color.Transparent;
             this.LabelIcon.Location = new System.Drawing.Point(12, 12);
             this.LabelIcon.Margin = new System.Windows.Forms.Padding(12, 12, 0, 12);
@@ -160,68 +181,78 @@
             this.TableLayoutPanelContent.SetRowSpan(this.LabelIcon, 2);
             this.LabelIcon.Size = new System.Drawing.Size(32, 32);
             this.LabelIcon.TabIndex = 0;
-
-            this.LinkLabel1.ActiveLinkColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(0)), System.Convert.ToInt32(System.Convert.ToByte(102)), System.Convert.ToInt32(System.Convert.ToByte(204)));
-            this.LinkLabel1.Anchor = (System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                | System.Windows.Forms.AnchorStyles.Left);
+            // 
+            // LinkLabel1
+            // 
+            this.LinkLabel1.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.LinkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.LinkLabel1.AutoSize = true;
             this.LinkLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.LinkLabel1.DisabledLinkColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(126)), System.Convert.ToInt32(System.Convert.ToByte(133)), System.Convert.ToInt32(System.Convert.ToByte(156)));
-            this.LinkLabel1.Font = new System.Drawing.Font("Tahoma", 12.0F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, System.Convert.ToByte(238));
+            this.LinkLabel1.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(126)))), ((int)(((byte)(133)))), ((int)(((byte)(156)))));
+            this.LinkLabel1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.LinkLabel1.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.LinkLabel1.LinkArea = new System.Windows.Forms.LinkArea(0, 0);
-            this.LinkLabel1.LinkColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(0)), System.Convert.ToInt32(System.Convert.ToByte(102)), System.Convert.ToInt32(System.Convert.ToByte(204)));
+            this.LinkLabel1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
             this.LinkLabel1.Location = new System.Drawing.Point(53, 16);
             this.LinkLabel1.Margin = new System.Windows.Forms.Padding(9, 16, 16, 16);
             this.LinkLabel1.Name = "LinkLabel1";
-            this.LinkLabel1.Size = new System.Drawing.Size(77, 19);
+            this.LinkLabel1.Size = new System.Drawing.Size(98, 24);
             this.LinkLabel1.TabIndex = 1;
             this.LinkLabel1.Text = "LabelTitle";
-
-            this.LabelContent.ActiveLinkColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(0)), System.Convert.ToInt32(System.Convert.ToByte(102)), System.Convert.ToInt32(System.Convert.ToByte(204)));
+            // 
+            // LabelContent
+            // 
+            this.LabelContent.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
             this.LabelContent.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.LabelContent.AutoSize = true;
-            this.LabelContent.DisabledLinkColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(126)), System.Convert.ToInt32(System.Convert.ToByte(133)), System.Convert.ToInt32(System.Convert.ToByte(156)));
+            this.LabelContent.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(126)))), ((int)(((byte)(133)))), ((int)(((byte)(156)))));
             this.LabelContent.LinkArea = new System.Windows.Forms.LinkArea(0, 0);
             this.LabelContent.LinkColor = System.Drawing.SystemColors.HotTrack;
-            this.LabelContent.Location = new System.Drawing.Point(56, 59);
+            this.LabelContent.Location = new System.Drawing.Point(56, 64);
             this.LabelContent.Margin = new System.Windows.Forms.Padding(12, 8, 16, 8);
             this.LabelContent.Name = "LabelContent";
-            this.LabelContent.Size = new System.Drawing.Size(71, 13);
+            this.LabelContent.Size = new System.Drawing.Size(89, 17);
             this.LabelContent.TabIndex = 2;
             this.LabelContent.Text = "LabelContent";
             this.LabelContent.VisitedLinkColor = System.Drawing.SystemColors.HotTrack;
-
-            this.TableLayoutPanelContents.Anchor = (System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-| System.Windows.Forms.AnchorStyles.Right);
+            // 
+            // TableLayoutPanelContents
+            // 
+            this.TableLayoutPanelContents.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TableLayoutPanelContents.AutoSize = true;
             this.TableLayoutPanelContents.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.TableLayoutPanelContents.ColumnCount = 1;
-            this.TableLayoutPanelContents.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0F));
-            this.TableLayoutPanelContents.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0F));
-            this.TableLayoutPanelContents.Location = new System.Drawing.Point(56, 109);
+            this.TableLayoutPanelContents.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.TableLayoutPanelContents.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.TableLayoutPanelContents.Location = new System.Drawing.Point(56, 122);
             this.TableLayoutPanelContents.Margin = new System.Windows.Forms.Padding(12, 8, 16, 8);
             this.TableLayoutPanelContents.Name = "TableLayoutPanelContents";
             this.TableLayoutPanelContents.RowCount = 1;
-            this.TableLayoutPanelContents.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0F));
-            this.TableLayoutPanelContents.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1.0F));
+            this.TableLayoutPanelContents.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.TableLayoutPanelContents.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
             this.TableLayoutPanelContents.Size = new System.Drawing.Size(322, 0);
             this.TableLayoutPanelContents.TabIndex = 3;
-
-            this.LabelExpandedContent.ActiveLinkColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(0)), System.Convert.ToInt32(System.Convert.ToByte(102)), System.Convert.ToInt32(System.Convert.ToByte(204)));
+            // 
+            // LabelExpandedContent
+            // 
+            this.LabelExpandedContent.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
             this.LabelExpandedContent.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.LabelExpandedContent.AutoSize = true;
-            this.LabelExpandedContent.DisabledLinkColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(126)), System.Convert.ToInt32(System.Convert.ToByte(133)), System.Convert.ToInt32(System.Convert.ToByte(156)));
+            this.LabelExpandedContent.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(126)))), ((int)(((byte)(133)))), ((int)(((byte)(156)))));
             this.LabelExpandedContent.LinkArea = new System.Windows.Forms.LinkArea(0, 0);
             this.LabelExpandedContent.LinkColor = System.Drawing.SystemColors.HotTrack;
-            this.LabelExpandedContent.Location = new System.Drawing.Point(56, 80);
+            this.LabelExpandedContent.Location = new System.Drawing.Point(56, 89);
             this.LabelExpandedContent.Margin = new System.Windows.Forms.Padding(12, 0, 16, 8);
             this.LabelExpandedContent.Name = "LabelExpandedContent";
-            this.LabelExpandedContent.Size = new System.Drawing.Size(119, 13);
+            this.LabelExpandedContent.Size = new System.Drawing.Size(151, 17);
             this.LabelExpandedContent.TabIndex = 2;
             this.LabelExpandedContent.Text = "LabelExpandedContent";
             this.LabelExpandedContent.VisitedLinkColor = System.Drawing.SystemColors.HotTrack;
-
+            // 
+            // TableLayoutPanel
+            // 
             this.TableLayoutPanel.AutoSize = true;
             this.TableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.TableLayoutPanel.ColumnCount = 1;
@@ -235,32 +266,30 @@
             this.TableLayoutPanel.RowCount = 2;
             this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0F));
-            this.TableLayoutPanel.Size = new System.Drawing.Size(394, 179);
+            this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.TableLayoutPanel.Size = new System.Drawing.Size(382, 179);
             this.TableLayoutPanel.TabIndex = 0;
-
-
-
             // 
-            // ToxDialogForm
+            // TDialogForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(394, 179);
+            this.ClientSize = new System.Drawing.Size(382, 179);
             this.Controls.Add(this.TableLayoutPanel);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(400, 400);
             this.MinimizeBox = false;
-            this.Name = "ToxDialogForm";
+            this.Name = "TDialogForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ToxDialogForm";
             this.TopMost = true;
+            this.LocationChanged += new System.EventHandler(this.TDialogForm_LocationChanged);
             this.PanelButtons.ResumeLayout(false);
             this.PanelButtons.PerformLayout();
             this.TableLayoutPanelButtons.ResumeLayout(false);
@@ -288,9 +317,9 @@
         private System.Windows.Forms.TableLayoutPanel TableLayoutPanelContent;
         private System.Windows.Forms.Label LabelIcon;
         private Label LinkLabel1;
-        private Label LabelContent;
+        internal Label LabelContent;
         private System.Windows.Forms.TableLayoutPanel TableLayoutPanelContents;
-        private Label LabelExpandedContent;
+        internal Label LabelExpandedContent;
         private System.Windows.Forms.TableLayoutPanel TableLayoutPanel;
     }
 }

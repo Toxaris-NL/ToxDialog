@@ -1,6 +1,6 @@
 ﻿namespace ToxDialog
 {
-    public enum ToxDialogDefaultButton
+    public enum TDialogDefaultButton
     {
         /// <summary>
         /// No button on the TDialog is the default button.

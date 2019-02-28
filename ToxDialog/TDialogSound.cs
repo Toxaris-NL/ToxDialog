@@ -14,12 +14,12 @@ namespace ToxDialog
         void Play();
     }
 
-    public sealed class ToxDialogSound : ISound
+    public sealed class TDialogSound : ISound
     {
         private readonly string name;
         private static readonly string mediaPath = Environment.ExpandEnvironmentVariables(@"%SystemRoot%\Media\");
 
-        internal ToxDialogSound(string name)
+        internal TDialogSound(string name)
         {
             this.name = name;
         }
@@ -75,7 +75,7 @@ namespace ToxDialog
             get {
                 if (_default == null)
                 {
-                    _default = new ToxDialogSound(".Default");
+                    _default = new TDialogSound(".Default");
                 }
                 return _default;
             }
@@ -87,7 +87,7 @@ namespace ToxDialog
         public static ISound Information {
             get {
                 if ((_information == null))
-                    _information = new ToxDialogSound("SystemAsterisk");
+                    _information = new TDialogSound("SystemAsterisk");
                 return _information;
             }
         }
@@ -98,7 +98,7 @@ namespace ToxDialog
         public static ISound Question {
             get {
                 if ((_question == null))
-                    _question = new ToxDialogSound("SystemQuestion");
+                    _question = new TDialogSound("SystemQuestion");
                 return _question;
             }
         }
@@ -109,7 +109,7 @@ namespace ToxDialog
         public static ISound Warning {
             get {
                 if ((_warning == null))
-                    _warning = new ToxDialogSound("SystemExclamation");
+                    _warning = new TDialogSound("SystemExclamation");
                 return _warning;
             }
         }
@@ -120,7 +120,7 @@ namespace ToxDialog
         public static ISound Error {
             get {
                 if ((_error == null))
-                    _error = new ToxDialogSound("SystemHand");
+                    _error = new TDialogSound("SystemHand");
                 return _error;
             }
         }
@@ -134,9 +134,9 @@ namespace ToxDialog
                 if ((_security == null))
                 {
                     if (Environment.OSVersion.Version.Major >= 6)
-                        _security = new ToxDialogSound("WindowsUAC");
+                        _security = new TDialogSound("WindowsUAC");
                     else
-                        _security = new ToxDialogSound("SystemHand");
+                        _security = new TDialogSound("SystemHand");
                 }
                 return _security;
             }

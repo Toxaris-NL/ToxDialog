@@ -2,7 +2,7 @@
 
 namespace ToxDialog
 {
-    public class ToxDialogButton
+    public class TDialogButton
     {
         #region Fields & Properties
 
@@ -19,7 +19,7 @@ namespace ToxDialog
         /// <summary>
         /// Determines the value returned to the parent form when the button is clicked.
         /// </summary>
-        public ToxDialogResult ToxDialogResult { get; set; }
+        public TDialogResult TDialogResult { get; set; }
 
         /// <summary>
         /// Determines whether to show the elevation icon (shield).
@@ -44,20 +44,20 @@ namespace ToxDialog
         /// <summary>
         /// Initializes the new instance of ToxDialogButton.
         /// </summary>
-        /// <param name="toxDialogResult">Determines the value returned to the parent form when the button is clicked.</param>
-        public ToxDialogButton(ToxDialogResult toxDialogResult)
+        /// <param name="tDialogResult">Determines the value returned to the parent form when the button is clicked.</param>
+        public TDialogButton(TDialogResult tDialogResult)
         {
-            ToxDialogResult = toxDialogResult;
+            TDialogResult = tDialogResult;
         }
 
         /// <summary>
         /// Initializes the new instance of ToxDialogButton.
         /// </summary>
-        /// <param name="toxDialogResult">Determines the value returned to the parent form when the button is clicked.</param>
+        /// <param name="tDialogResult">Determines the value returned to the parent form when the button is clicked.</param>
         /// <param name="showElevationIcon">Determines whether to show the elevation icon (shield).</param>
-        public ToxDialogButton(ToxDialogResult toxDialogResult, bool showElevationIcon)
+        public TDialogButton(TDialogResult tDialogResult, bool showElevationIcon)
         {
-            ToxDialogResult = toxDialogResult;
+            TDialogResult = tDialogResult;
             ShowElevationIcon = showElevationIcon;
         }
 
@@ -66,11 +66,11 @@ namespace ToxDialog
         /// </summary>
         /// <param name="text">The custom text shown on the button.</param>
         /// <param name="click">">Occurs when the button is clicked, but before the form is closed.</param>
-        public ToxDialogButton(string text, EventHandler click)
+        public TDialogButton(string text, EventHandler click)
         {
             UseCustomText = true;
             Text = text;
-            ToxDialogResult = ToxDialogResult.None;
+            TDialogResult = TDialogResult.None;
             Click += click;
         }
 
@@ -80,11 +80,11 @@ namespace ToxDialog
         /// <param name="text">The custom text shown on the button.</param>
         /// <param name="click">Occurs when the button is clicked, but before the form is closed.</param>
         /// <param name="showElevationIcon">Determines whether to show the elevation icon (shield).</param>
-        public ToxDialogButton(string text, EventHandler click, bool showElevationIcon)
+        public TDialogButton(string text, EventHandler click, bool showElevationIcon)
         {
             UseCustomText = true;
             Text = text;
-            ToxDialogResult = ToxDialogResult.None;
+            TDialogResult = TDialogResult.None;
             Click += click;
             ShowElevationIcon = showElevationIcon;
         }
@@ -92,26 +92,26 @@ namespace ToxDialog
         /// <summary>
         /// Initializes the new instance of ToxDialogButton.
         /// </summary>
-        /// <param name="toxDialogResult">Determines the value returned to the parent form when the button is clicked.</param>
+        /// <param name="tDialogResult">Determines the value returned to the parent form when the button is clicked.</param>
         /// <param name="text">The custom text shown on the button.</param>
-        public ToxDialogButton(ToxDialogResult toxDialogResult, string text)
+        public TDialogButton(TDialogResult tDialogResult, string text)
         {
             UseCustomText = true;
             Text = text;
-            ToxDialogResult = toxDialogResult;
+            TDialogResult = tDialogResult;
         }
 
         /// <summary>
         /// Initializes the new instance of ToxDialogButton.
         /// </summary>
-        /// <param name="toxDialogResult">Determines the value returned to the parent form when the button is clicked.</param>
+        /// <param name="tDialogResult">Determines the value returned to the parent form when the button is clicked.</param>
         /// <param name="text">The custom text shown on the button.</param>
         /// <param name="showElevationIcon">Determines whether to show the elevation icon (shield).</param>
-        public ToxDialogButton(ToxDialogResult toxDialogResult, string text, bool showElevationIcon)
+        public TDialogButton(TDialogResult tDialogResult, string text, bool showElevationIcon)
         {
             UseCustomText = true;
             Text = text;
-            ToxDialogResult = toxDialogResult;
+            TDialogResult = tDialogResult;
             ShowElevationIcon = showElevationIcon;
         }
 

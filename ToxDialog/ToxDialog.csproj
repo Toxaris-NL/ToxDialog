@@ -77,19 +77,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ToxDialog.cs" />
+    <Compile Include="TDialog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ToxDialogButton.cs" />
-    <Compile Include="ToxDialogDefaultButton.cs" />
-    <Compile Include="ToxDialogForm.cs">
+    <Compile Include="TDialogButton.cs" />
+    <Compile Include="TDialogDefaultButton.cs" />
+    <Compile Include="TDialogForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ToxDialogForm.Designer.cs">
-      <DependentUpon>ToxDialogForm.cs</DependentUpon>
+    <Compile Include="TDialogForm.Designer.cs">
+      <DependentUpon>TDialogForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToxDialogIcon.cs" />
-    <Compile Include="ToxDialogResult.cs" />
-    <Compile Include="ToxDialogSound.cs" />
+    <Compile Include="TDialogIcon.cs" />
+    <Compile Include="TDialogResult.cs" />
+    <Compile Include="TDialogSound.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Localization.resx">
@@ -100,8 +100,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToxDialogForm.resx">
-      <DependentUpon>ToxDialogForm.cs</DependentUpon>
+    <EmbeddedResource Include="TDialogForm.resx">
+      <DependentUpon>TDialogForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

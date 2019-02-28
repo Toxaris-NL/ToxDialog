@@ -6,11 +6,11 @@ namespace ToxDialog
     /// <summary>
     /// Displays a Vista-like message box or task dialog that can contain text, buttons, symbols and other elements that inform and instruct the user.
     /// </summary>
-    public sealed class ToxDialog
+    public sealed class TDialog
     {
         #region Messagebox
 
-        private static readonly IWin32Window NullWindow = null;
+        private static readonly IWin32Window NullWindow;
 
         /// <summary>
         /// Displays a Vista-like message box with specified text.
@@ -135,7 +135,7 @@ namespace ToxDialog
         /// <returns>One of the DialogResult values.</returns>
         public static DialogResult Show(IWin32Window owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton)
         {
-            ToxDialog newDialog = new ToxDialog
+            TDialog newDialog = new TDialog
             {
                 Content = text,
                 WindowTitle = caption
@@ -143,55 +143,56 @@ namespace ToxDialog
             switch (buttons)
             {
                 case MessageBoxButtons.AbortRetryIgnore:
-                    newDialog.Buttons = new ToxDialogButton() { new ToxDialogButton(ToxDialogResult.Abort), new ToxDialogButton(ToxDialogResult.Retry), new ToxDialogButton(ToxDialogResult.Ignore) };
+                    newDialog.TButtons = new TDialogButton[] { new TDialogButton(TDialogResult.Abort), new TDialogButton(TDialogResult.Retry), new TDialogButton(TDialogResult.Ignore) };
                     break;
 
                 case MessageBoxButtons.OKCancel:
-                    newDialog.Buttons = new ToxDialogButton() { new ToxDialogButton(ToxDialogResult.OK), new ToxDialogButton(ToxDialogResult.Cancel) };
+                    newDialog.TButtons = new TDialogButton[] { new TDialogButton(TDialogResult.OK), new TDialogButton(TDialogResult.Cancel) };
                     break;
 
                 case MessageBoxButtons.RetryCancel:
-                    newDialog.Buttons = new ToxDialogButton() { new ToxDialogButton(ToxDialogResult.Retry), new ToxDialogButton(ToxDialogResult.Cancel) };
+                    newDialog.TButtons = new TDialogButton[] { new TDialogButton(TDialogResult.Retry), new TDialogButton(TDialogResult.Cancel) };
                     break;
 
                 case MessageBoxButtons.YesNo:
-                    newDialog.Buttons = new ToxDialogButton() { new ToxDialogButton(ToxDialogResult.Yes), new ToxDialogButton(ToxDialogResult.No) };
+                    newDialog.TButtons = new TDialogButton[] { new TDialogButton(TDialogResult.Yes), new TDialogButton(TDialogResult.No) };
                     break;
 
                 case MessageBoxButtons.YesNoCancel:
-                    newDialog.Buttons = new ToxDialogButton() { new ToxDialogButton(ToxDialogResult.Yes), new ToxDialogButton(ToxDialogResult.No), new ToxDialogButton(ToxDialogResult.Cancel) };
+                    newDialog.TButtons = new TDialogButton[] { new TDialogButton(TDialogResult.Yes), new TDialogButton(TDialogResult.No), new TDialogButton(TDialogResult.Cancel) };
                     break;
 
                 default:
-                    newDialog.Buttons = new ToxDialogButton() { new ToxDialogButton(ToxDialogResult.OK) };
+                    newDialog.TButtons = new TDialogButton[] { new TDialogButton(TDialogResult.OK) };
                     break;
             }
 
             switch (icon)
             {
                 case MessageBoxIcon.Information:
-                    newDialog.MainIcon = ToxDialogIcon.Information;
+                    newDialog.MainIcon = TDialogIcon.Information;
                     break;
 
                 case MessageBoxIcon.Warning:
-                    newDialog.MainIcon = ToxDialogIcon.Warning;
+                    newDialog.MainIcon = TDialogIcon.Warning;
                     break;
 
                 case MessageBoxIcon.Error:
-                    newDialog.MainIcon = ToxDialogIcon.Error;
+                    newDialog.MainIcon = TDialogIcon.Error;
                     break;
 
                 case MessageBoxIcon.Question:
-                    newDialog.MainIcon = ToxDialogIcon.Question;
+                    newDialog.MainIcon = TDialogIcon.Question;
                     break;
 
                 default:
                     newDialog.CustomMainIcon = null;
+                    break;
             }
-            newDialog.DefaultButton = MakeToxDialogDefaultButton(defaultButton);
+            newDialog.DefaultButton = Extensions.MakeToxDialogDefaultButton(defaultButton);
             newDialog.Owner = owner;
             newDialog.Show();
-            return MakeDialogResult(newDialog.Result);
+            return Extensions.MakeDialogResult(newDialog.Result);
         }
 
         private static void SetStartPosition(Form form, IWin32Window owner)
@@ -214,14 +215,14 @@ namespace ToxDialog
         /// Shows the TDialog form as a modal dialog box.
         /// </summary>
         /// <returns>One of the TDialogResult values.</returns>
-        public ToxDialogResult Show()
+        public TDialogResult Show()
         {
             return ShowInternal(Owner);
         }
 
-        private ToxDialogResult ShowInternal(IWin32Window owner)
+        private TDialogResult ShowInternal(IWin32Window owner)
         {
-            using (ToxDialogForm form = new ToxDialogForm())
+            using (TDialogForm form = new TDialogForm())
             {
                 this.form = form;
                 form.LinkClicked += RaiseLinkClicked;
@@ -234,7 +235,7 @@ namespace ToxDialog
                 YPosition = this.form.Location.Y;
                 this.form = null;
                 form.Activate();
-                Result = (form.Tag as ToxDialogButton).TDialogResult;
+                Result = (form.Tag as TDialogButton).TDialogResult;
                 return Result;
             }
         }
@@ -259,7 +260,7 @@ namespace ToxDialog
             }
             form.Caption = WindowTitle;
             form.Title = MainInstruction;
-            form.ToxButtons = Buttons;
+            form.ToxButtons = TButtons;
             form.MainIcon = MainIcon;
             if (CustomMainIcon != null)
             {
@@ -272,27 +273,27 @@ namespace ToxDialog
                 expanded = form.LabelExpandedContent;
             }
             form.Expanded = ExpandedByDefault;
-            form.CustomControl = CustomControl;
+            form.CustomControl = Control;
             if (Sound != null)
             {
                 form.Sound = Sound;
             }
             form.ResumeLayouts();
-            form.xPosition = XPosition;
-            form.yPosition = YPosition;
+            form.XPosition = XPosition;
+            form.YPosition = YPosition;
         }
 
-        private ToxDialogForm form;
+        private TDialogForm form;
 
-        public void Close(ToxDialogResult result)
+        public void Close(TDialogResult result)
         {
             if (form != null)
             {
                 throw new InvalidOperationException("Cannot invoke this method before the dialog is shown, or after it is closed.");
             }
-            ToxDialogButton button = new ToxDialogButton(result);
+            TDialogButton button = new TDialogButton(result);
             form.Tag = button;
-            if (button.ToxDialogResult != ToxDialogResult.None)
+            if (button.TDialogResult != TDialogResult.None)
             {
                 form.DialogResult = DialogResult.OK;
             }
@@ -354,12 +355,12 @@ namespace ToxDialog
         /// <summary>
         /// Gets or sets the array of the TDialogButtons that specifies which buttons to display in the Vista-like task dialog.
         /// </summary>
-        public ToxDialogButton ToxButtons { get; set; }
+        public TDialogButton[] TButtons { get; set; }
 
         /// <summary>
         /// Gets or sets the one of the TDialogIcon values that specifies which icon on what background to display in the Vista-like task dialog.
         /// </summary>
-        public ToxDialogIcon MainIcon { get; set; }
+        public TDialogIcon MainIcon { get; set; }
 
         /// <summary>
         /// Gets or sets the custom image to display in the Vista-like task dialog.
@@ -369,7 +370,7 @@ namespace ToxDialog
         /// <summary>
         /// Gets or sets one of the TDialogDefaultButton values that specifies the default button for the Vista-like task dialog.
         /// </summary>
-        public ToxDialogDefaultButton DefaultButton { get; set; } = ToxDialogDefaultButton.Button1;
+        public TDialogDefaultButton DefaultButton { get; set; } = TDialogDefaultButton.Button1;
 
         /// <summary>
         /// Gets or sets a value indicating whether the text appears from right to left, such as when using Hebrew or Arabic fonts.
@@ -384,7 +385,7 @@ namespace ToxDialog
         /// <summary>
         /// Gets or sets the dialog result for the TDialog form.
         /// </summary>
-        public ToxDialogResult Result { get; set; }
+        public TDialogResult Result { get; set; }
 
         /// <summary>
         /// Gets or sets the custom control to display in the Vista-like task dialog.

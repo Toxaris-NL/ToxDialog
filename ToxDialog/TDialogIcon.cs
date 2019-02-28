@@ -5,7 +5,7 @@ namespace ToxDialog
     /// <summary>
     /// Specifies constants defining which icon to display on what background.
     /// </summary>
-    public enum ToxDialogIcon { None, Information, Question, Warning, Error }
+    public enum TDialogIcon { None, Information, Question, Warning, Error }
 
     public static class ToxDialogBigIcon
     {
