@@ -92,6 +92,7 @@
     <Compile Include="TDialogSound.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Localization.nl-NL.resx" />
     <EmbeddedResource Include="Localization.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Localization.Designer.cs</LastGenOutput>
