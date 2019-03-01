@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ToxDialog</RootNamespace>
     <AssemblyName>ToxDialog</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -92,7 +93,7 @@
     <Compile Include="TDialogSound.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Localization.nl-NL.resx" />
+    <EmbeddedResource Include="Localization.nl.resx" />
     <EmbeddedResource Include="Localization.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Localization.Designer.cs</LastGenOutput>

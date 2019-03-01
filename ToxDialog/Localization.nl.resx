@@ -135,11 +135,11 @@
   <data name="ExpandedText" xml:space="preserve">
     <value>Minder details</value>
   </data>
-  <data name="IgnoreText" xml:space="preserve">
-    <value>&amp;Negeren</value>
-  </data>
   <data name="NoneText" xml:space="preserve">
     <value>Geen</value>
+  </data>
+  <data name="IgnoreText" xml:space="preserve">
+    <value>&amp;Negeren</value>
   </data>
   <data name="NoText" xml:space="preserve">
     <value>&amp;Nee</value>
