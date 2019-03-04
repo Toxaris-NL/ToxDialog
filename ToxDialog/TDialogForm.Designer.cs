@@ -73,13 +73,13 @@
             this.TableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.TableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.TableLayoutPanelButtons.Controls.Add(this.FlowLayoutPanelButtons, 1, 0);
-            this.TableLayoutPanelButtons.Location = new System.Drawing.Point(129, 2);
+            this.TableLayoutPanelButtons.Location = new System.Drawing.Point(121, 2);
             this.TableLayoutPanelButtons.Margin = new System.Windows.Forms.Padding(0);
             this.TableLayoutPanelButtons.Name = "TableLayoutPanelButtons";
             this.TableLayoutPanelButtons.RowCount = 1;
             this.TableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
-            this.TableLayoutPanelButtons.Size = new System.Drawing.Size(265, 41);
+            this.TableLayoutPanelButtons.Size = new System.Drawing.Size(273, 41);
             this.TableLayoutPanelButtons.TabIndex = 1;
             // 
             // FlowLayoutPanelButtons
@@ -91,7 +91,7 @@
             this.FlowLayoutPanelButtons.Controls.Add(this.Button2);
             this.FlowLayoutPanelButtons.Controls.Add(this.Button3);
             this.FlowLayoutPanelButtons.Location = new System.Drawing.Point(8, 4);
-            this.FlowLayoutPanelButtons.Margin = new System.Windows.Forms.Padding(8, 4, 8, 4);
+            this.FlowLayoutPanelButtons.Margin = new System.Windows.Forms.Padding(8, 4, 16, 4);
             this.FlowLayoutPanelButtons.Name = "FlowLayoutPanelButtons";
             this.FlowLayoutPanelButtons.Size = new System.Drawing.Size(249, 33);
             this.FlowLayoutPanelButtons.TabIndex = 0;
